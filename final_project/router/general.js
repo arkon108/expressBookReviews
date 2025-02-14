@@ -5,8 +5,22 @@ let users = require("./auth_users.js").users;
 const public_users = express.Router();
 
 public_users.post("/register", (req, res) => {
-  //Write your code here
-  return res.status(300).json({ message: "Yet to be implemented" });
+  // The code should take the ‘username’ and ‘password’ provided in the body of the request for registration
+  // If the username already exists, it must mention the same & must also show other errors
+  // like eg. when username & password are not provided.
+
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    return res.status(400).json({ message: "Username and password required" });
+  }
+
+  if (!isValid(username)) {
+    return res.status(400).json({ message: "Username already exists" });
+  }
+
+  users.push({ username, password });
+  return res.status(200).json({ message: "User registered successfully" });
 });
 
 // Get the book list available in the shop
@@ -61,8 +75,13 @@ public_users.get("/title/:title", function (req, res) {
 
 //  Get book review
 public_users.get("/review/:isbn", function (req, res) {
-  //Write your code here
-  return res.status(300).json({ message: "Yet to be implemented" });
+  const { isbn } = req.params;
+
+  if (books[isbn]) {
+    return res.status(200).json(books[isbn].reviews);
+  } else {
+    return res.status(404).json({ message: "Book not found" });
+  }
 });
 
 module.exports.general = public_users;
