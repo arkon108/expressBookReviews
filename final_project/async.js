@@ -6,7 +6,6 @@ const API_ENDPOINT = "http://localhost:5005/";
 // Task 10:
 // Add the code for getting the list of books available in the shop (done in Task 1)
 // using Promise callbacks or async-await with Axios.
-
 const getBooks = async () => {
   try {
     const response = await axios.get(API_ENDPOINT);
@@ -15,6 +14,10 @@ const getBooks = async () => {
     console.error(error);
   }
 };
+// run the function
+// getBooks()
+//   .then((data) => console.log(data))
+//   .catch((error) => console.error(error));
 
 // Task 11:
 // Add the code for getting the book details based on ISBN (done in Task 2)
@@ -29,6 +32,11 @@ const getBookByISBN = async (isbn) => {
   }
 };
 
+// run the function
+// getBookByISBN(1)
+//   .then((data) => console.log(data))
+//   .catch((error) => console.error(error));
+
 // Task 12:
 // Add the code for getting the book details based on Author (done in Task 3)
 // using Promise callbacks or async-await with Axios.
@@ -42,6 +50,11 @@ const getBooksByAuthor = async (author) => {
   }
 };
 
+// run the function
+// getBooksByAuthor("Unknown")
+//   .then((data) => console.log(data))
+//   .catch((error) => console.error(error));
+
 // Task 13:
 // Add the code for getting the book details based on Title (done in Task 4)
 // using Promise callbacks or async-await with Axios.
@@ -54,3 +67,9 @@ const getBooksByTitle = async (title) => {
     console.error(error);
   }
 };
+
+// run the function
+
+getBooksByTitle("Fairy tales")
+  .then((data) => console.log(data))
+  .catch((error) => console.error(error));
